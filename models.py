@@ -9,7 +9,7 @@ import os
 import csv
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:swim4life@localhost:5432/ster_api"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:XXXX@localhost:5432/ster_api"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # Initialize db connection
 db = SQLAlchemy(app)
