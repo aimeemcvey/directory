@@ -1,0 +1,58 @@
+h1 {
+  color: #070b42;
+  text-align: center;
+}
+
+header {
+height: 100px;
+line-height: 2;
+margin-top: 20px;
+}
+
+button:hover {
+background-color: #A09C9C
+}
+
+form {
+margin: 20px;
+padding: 20px;
+}
+
+#choice option { color: black; }
+.empty { color: gray; }
+
+body {
+padding: 0;
+margin: 0;
+background-color: #fafafa;
+margin-bottom: 100px;
+/* background-image: radial-gradient(circle, #d6edf3, #9bd0de); */
+/* background-repeat: no-repeat; */
+/* background-color: #9bd0de; */
+/* background-attachment: fixed; */
+}
+
+.nav a{
+  color: #070b42;
+  padding: 5px;
+}
+/*--- navigation bar ---*/
+.navbar {
+background:#070b42;
+}
+.nav-link,
+.navbar-brand {
+color: #fafafa;
+cursor: pointer;
+}
+.nav-link {
+margin-right: 1em !important;
+}
+.nav-link:hover, .navbar-brand:hover {
+color: rgb(189, 186, 186);
+}
+.navbar-collapse {
+justify-content: flex-end;
+}
+
+

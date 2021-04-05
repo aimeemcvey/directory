@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TJO Database</title>
+
+        <meta charset="utf=8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md">
+            <a class="navbar-brand" href="{{ url_for('index') }}">TJO Database</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-navigation">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('help') }}">Help</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <section class="jumbotron text-center">
+          <div class="container">
+            <h1 class="jumbotron-heading">Database</h1>
+            <p class="lead text-muted">For now, bioburden and dose audit results are in the database. It's still very much a work in progress, but let me know
+              if you find any bugs, have any ideas, or would like to see something useful for you.</p>
+            <p>
+              <a href="#" class="btn btn-primary my-2">Search Data</a>
+              <!-- "{{ url_for('search_page') }}" -->
+              <a href="#" class="btn btn-secondary my-2">Add Data</a>
+            </p>
+          </div>
+        </section>
+
+        <div class="container">
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+              <a class="nav-link active" onclick="openTab(event, 'BB')" id="defaultOpen">Bioburden</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="openTab(event, 'DA')">Dose Audits</a>
+            </li>
+<!--             <li class="nav-item">
+              <a class="nav-link" href="#">Lots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Parts</a>
+            </li> -->
+        </ul>
+        </div>
+
+        <body class="bg-light">
+
+          <div id="BB" class="tabcontent">
+          <form action="{{ url_for('search_bb') }}" method="post">
+            <div class="container">
+              <h3 class="mb-3">Search by Report</h3>
+              
+              <div class="form-group">
+                <select class="form-control" name="bb_report_id" id="choice">
+                    <option value="0" disable selected>Choose Report</option>
+                    {% for bb_report in bb_reports %}
+                        <option value="{{ bb_report.id }}">{{ bb_report.date }} -- {{ bb_report.test_report_num }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" id="report_btn">Submit</button>
+              </div>
+            </div>
+          </form>
+          </div>
+
+          <div id="DA" class="tabcontent">
+          <form action="{{ url_for('search_da') }}" method="post">
+            <div class="container">
+              <h3 class="mb-3">Search by Report</h3>
+
+              <div class="form-group">
+                <select class="form-control" name="da_report_id" id="choice">
+                    <option value="0" disable selected>Choose Report</option>
+                    {% for da_report in da_reports %}
+                        <option value="{{ da_report.id }}">{{ da_report.date }} -- {{ da_report.report }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" id="report_btn">Submit</button>
+              </div>
+            </div>
+          </form>
+          </div>
+    
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 order-md-1">
+                <h3 class="mb-3">Search by Field</h3>
+
+                <form action="{{ url_for('search') }}" method="post">
+
+                <form class="needs-validation" novalidate>
+                  <h4 class="mb-3">Packager</h4>
+                  <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                      <input id="all" name="packager" value="all" type="radio" class="custom-control-input" required>
+                      <label class="custom-control-label" for="all">All</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="millstone" name="packager" value="Millstone" type="radio" class="custom-control-input" required>
+                      <label class="custom-control-label" for="millstone">Millstone</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="qts" name="packager" value="QTS" type="radio" class="custom-control-input" required>
+                      <label class="custom-control-label" for="qts">QTS</label>
+                    </div>
+                  </div>
+                  <hr class="mb-4">
+                  <h4 class="mb-3">Filtering Options</h4>
+                  <div class="form-group row">
+                    <div class="col-md-6 mb-3">
+                      <label for="start_date">Start Date</label>
+                      <input class="form-control" type="date" id="start_date" name="report_start_date" value="report_start_date"></input>
+                      <div class="invalid-feedback">
+                        Please select a valid date.
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="end_date">End Date</label>
+                      <input class="form-control" type="date" id="end_date" name="report_end_date" value="report_end_date"></input>
+                      <div class="invalid-feedback">
+                        Please select a valid date.
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                    <p id="queryHelpBlock" class="form-text text-muted">
+                      If you'd like to search by different parameters, please submit a request.
+                    </p>
+                    </div>
+                  </div>
+                  <hr class="mb-4">
+                  <button class="btn btn-primary btn-block" type="submit">Search</button>
+                </form>
+              </form>
+              </div>
+            </div>
+          </div>
+        
+        </body>
+        
+
+        <footer class="fixed-bottom bg-dark">
+          <div class="container">
+            <span class="text-muted">  
+              <h6 class="text-uppercase font-weight-bold"><br/>Contact</h6>
+              <p>amcvey@tjoinc.com
+                <br/>Please reach out with ideas/suggestions, or submit a problem/request on the help page.</p>
+            </span>
+          </div>
+        </footer>
+
+
+      
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script src="{{ url_for('static', filename='index.js') }}"></script>
+    </body>
+</html>

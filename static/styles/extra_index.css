@@ -1,0 +1,121 @@
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 60px;
+  height: 100px;
+} */
+
+/* .container > div {
+  margin: 5px;
+  background-color: #222;
+  color: #ccc;
+  padding: 10px 0 10px;
+  width: auto;
+  height: 100px;
+} */
+
+/* 
+.header {
+  background-image: url('images/wing.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+} */
+
+/*   .overlay {
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+} */
+
+.description {
+    left: 50%;
+    position: absolute;
+    top: 45%;
+    transform: translate(-50%, -55%);
+    text-align: center;
+  }
+  .description h1 {
+    color: #070b42;
+    text-shadow: 1px 1px #000000
+  }
+  .description p {
+    color: #fafafa;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    text-shadow: 1px 1px #000000
+  }
+  
+  .description button {
+    border:1px solid #070b42;
+    background:#070b42;
+    border-radius: 0;
+    color:#fafafa;
+  }
+  .description button:hover {
+    border:1px solid #fafafa;
+    background:#fafafa;
+    color:#000;
+  }
+  
+  ul li{
+    text-align: center;
+  }
+
+  
+.features {
+    margin: 4em auto;
+    padding: 1em;
+    position: relative;
+  }
+  .feature-title {
+    color: #070b42;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .features p {
+    text-align: center;
+  }
+  .features img {
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 16px;
+  }
+  
+  .features .form-control,
+  .features input {
+    border-radius: 0;
+  }
+  .features .btn {
+  background-color: #070b42;
+  border: 1px solid #070b42;
+  color: #fafafa;
+  margin-top: 20px;
+  }
+  .features .btn:hover {
+  background-color: #333;
+  border: 1px solid #333;
+  }
+  
+  .topofpage {
+  padding: 30px;
+  text-align: center;
+  }
+  
+  .footer {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .footer-copyright {
+    color: #666;
+    padding: 40px 0;
+  }
+  

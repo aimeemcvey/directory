@@ -1,0 +1,11 @@
+requests
+flask
+pytest
+pytest-pep8
+datetime
+sphinx
+psycopg2-binary
+flask-sqlalchemy
+Flask-Migrate
+flask_session
+PyRFC
